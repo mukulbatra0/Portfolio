@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   optimizeDeps: {
-    include: ['three', '@react-three/fiber', '@react-three/drei', 'gsap', 'framer-motion']
+    include: ['gsap', 'framer-motion']
   },
   build: {
     target: 'esnext',
@@ -20,10 +20,7 @@ export default defineConfig({
       output: {
         manualChunks: {
           'vendor': ['react', 'react-dom'],
-          'three': ['three'],
-          'react-three': ['@react-three/fiber', '@react-three/drei'],
-          'animations': ['gsap', 'framer-motion'],
-          'utils': ['src/utils/constants.js', 'src/utils/seo.js']
+          'animations': ['gsap', 'framer-motion']
         }
       }
     },
