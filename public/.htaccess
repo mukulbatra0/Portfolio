@@ -1,0 +1,12 @@
+# Force download for PDF files
+<FilesMatch "\.(pdf)$">
+    Header set Content-Type "application/pdf"
+    Header set Content-Disposition "attachment"
+</FilesMatch>
+
+# Enable CORS for all files
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+    Header set Access-Control-Allow-Headers "Content-Type"
+</IfModule>

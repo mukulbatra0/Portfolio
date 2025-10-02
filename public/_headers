@@ -1,0 +1,7 @@
+/resume/*.pdf
+  Content-Type: application/pdf
+  Content-Disposition: attachment
+
+/*.pdf
+  Content-Type: application/pdf
+  Content-Disposition: attachment

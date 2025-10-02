@@ -1,0 +1,107 @@
+/* Clean Navbar Styles - Bulletproof */
+
+/* Ensure navbar is always visible and properly positioned */
+nav[role="navigation"],
+.navbar-container nav,
+header nav {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 10000 !important;
+  transform: translateY(0px) !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: block !important;
+  width: 100% !important;
+}
+
+/* Override any potential hiding classes or animations */
+nav[role="navigation"] * {
+  visibility: visible !important;
+}
+
+/* Prevent any transform animations that might hide the navbar */
+nav[role="navigation"] {
+  animation: none !important;
+  transition-property: background-color, backdrop-filter, border-color, box-shadow !important;
+}
+
+/* Smooth transitions */
+.navbar-container nav {
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Logo hover effects */
+.navbar-container .logo-container {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Navigation link styles */
+.navbar-container .nav-link {
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.navbar-container .nav-link:hover {
+  transform: translateY(-1px);
+}
+
+/* Active link indicator */
+.navbar-container .nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background: currentColor;
+  border-radius: 50%;
+}
+
+/* Mobile menu animations */
+.navbar-container .mobile-menu {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Prevent body scroll when mobile menu is open */
+body.mobile-menu-open {
+  overflow: hidden;
+}
+
+/* Focus styles for accessibility */
+.navbar-container button:focus {
+  outline: 2px solid #22d3ee;
+  outline-offset: 2px;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Account for fixed navbar in scroll targets */
+* {
+  scroll-margin-top: 80px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .navbar-container nav {
+    background: rgba(0, 0, 0, 0.95) !important;
+    border-bottom: 2px solid #22d3ee !important;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .navbar-container * {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+}

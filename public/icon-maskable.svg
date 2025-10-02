@@ -1,0 +1,18 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Safe area background for maskable icon -->
+  <rect width="512" height="512" fill="#0F172A"/>
+  
+  <!-- Content within safe area (80% of total size) -->
+  <g transform="translate(51.2, 51.2) scale(0.8)">
+    <!-- Background -->
+    <rect width="512" height="512" fill="#0F172A" rx="64"/>
+    
+    <!-- Main Icon - Modern M for Mukul -->
+    <path d="M128 160L256 320L384 160V352H320V240L256 320L192 240V352H128V160Z" fill="#22D3EE"/>
+    
+    <!-- Accent Elements -->
+    <circle cx="128" cy="128" r="16" fill="#10B981"/>
+    <circle cx="384" cy="128" r="16" fill="#8B5CF6"/>
+    <rect x="240" y="384" width="32" height="32" fill="#F59E0B" rx="4"/>
+  </g>
+</svg>

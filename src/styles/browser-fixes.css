@@ -1,0 +1,228 @@
+/* Browser-specific fixes and compatibility styles */
+
+/* Chrome-specific fixes */
+.browser-chrome {
+  /* Fix for Chrome's aggressive font smoothing */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.browser-chrome .glass-morphism {
+  /* Chrome handles backdrop-filter well */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Firefox-specific fixes */
+.browser-firefox {
+  /* Firefox scrollbar styling */
+  scrollbar-width: thin;
+  scrollbar-color: #22D3EE #0F172A;
+}
+
+.browser-firefox .glass-morphism {
+  /* Firefox backdrop-filter support */
+  backdrop-filter: blur(10px);
+}
+
+.browser-firefox .transform-3d {
+  /* Firefox 3D transform optimization */
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+/* Safari-specific fixes */
+.browser-safari {
+  /* Safari font rendering */
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.browser-safari .glass-morphism {
+  /* Safari backdrop-filter with webkit prefix */
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.browser-safari .sticky-element {
+  /* Safari sticky positioning fix */
+  position: -webkit-sticky;
+  position: sticky;
+}
+
+.browser-safari .transform-3d {
+  /* Safari 3D transform fixes */
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Edge-specific fixes */
+.browser-edge .glass-morphism {
+  /* Edge backdrop-filter support */
+  backdrop-filter: blur(10px);
+}
+
+.browser-edge .grid-container {
+  /* Edge CSS Grid fixes */
+  display: -ms-grid;
+  display: grid;
+}
+
+/* Internet Explorer fixes (legacy support) */
+.browser-internet-explorer {
+  /* IE doesn't support many modern features */
+}
+
+.browser-internet-explorer .glass-morphism {
+  /* IE fallback - no backdrop-filter */
+  background: rgba(15, 23, 42, 0.9);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.browser-internet-explorer .grid-container {
+  /* IE Grid fallback */
+  display: -ms-grid;
+}
+
+.browser-internet-explorer .flex-container {
+  /* IE Flexbox fixes */
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.browser-internet-explorer .flex-center {
+  -ms-flex-align: center;
+  -ms-flex-pack: center;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Feature-based fallbacks */
+
+/* No CSS Grid support */
+.no-grid .grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -0.5rem;
+}
+
+.no-grid .grid > * {
+  flex: 1 1 300px;
+  margin: 0.5rem;
+  min-width: 0;
+}
+
+.no-grid .grid-cols-1 > * { flex-basis: 100%; }
+.no-grid .grid-cols-2 > * { flex-basis: calc(50% - 1rem); }
+.no-grid .grid-cols-3 > * { flex-basis: calc(33.333% - 1rem); }
+.no-grid .grid-cols-4 > * { flex-basis: calc(25% - 1rem); }
+
+/* No backdrop-filter support */
+.no-backdrop-filter .glass-morphism {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.no-backdrop-filter .glass-navbar {
+  background: rgba(15, 23, 42, 0.95);
+}
+
+/* No 3D transforms support */
+.no-transforms-3d .transform-3d {
+  transform: none !important;
+}
+
+.no-transforms-3d .flip-card {
+  /* Fallback for flip animations */
+  transition: opacity 0.3s ease;
+}
+
+.no-transforms-3d .flip-card.flipped .front {
+  opacity: 0;
+}
+
+.no-transforms-3d .flip-card.flipped .back {
+  opacity: 1;
+}
+
+/* No WebGL support */
+.no-webgl .three-js-scene {
+  display: none;
+}
+
+.no-webgl .three-js-fallback {
+  display: block;
+}
+
+/* Reduced effects for performance */
+.reduced-effects * {
+  animation-duration: 0.2s !important;
+  transition-duration: 0.2s !important;
+}
+
+.reduced-effects .particle-system,
+.reduced-effects .floating-shapes,
+.reduced-effects .complex-animation {
+  display: none;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .glass-morphism {
+    background: rgba(15, 23, 42, 0.95);
+    border: 2px solid #22D3EE;
+  }
+  
+  .text-neutral-slate {
+    color: #F4F4F4;
+  }
+}
+
+/* Print styles */
+@media print {
+  .glass-morphism {
+    background: white;
+    border: 1px solid #ccc;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  
+  .text-gradient-primary {
+    color: black !important;
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+  }
+  
+  .animate-fadeInUp,
+  .animate-slideInLeft,
+  .animate-slideInRight {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Mobile browser fixes */
+@supports (-webkit-touch-callout: none) {
+  /* iOS Safari specific fixes */
+  .ios-safari-fix {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .mobile-vh {
+    height: -webkit-fill-available;
+  }
+}
+
+/* Android browser fixes */
+@media screen and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
+  .android-chrome-fix {
+    /* Android Chrome specific fixes */
+    transform: translateZ(0);
+  }
+}
