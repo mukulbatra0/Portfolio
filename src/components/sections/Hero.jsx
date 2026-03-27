@@ -189,7 +189,7 @@ const Hero = React.memo(() => {
                 <AnimatedButton
                   variant="download"
                   size="lg"
-                  downloadUrl={personalInfo.resumeUrl || "/resume/mukul-batra-resume.pdf"}
+                  downloadUrl={personalInfo.resumeUrl || "/resume/Mukul-Batra-Resume.pdf"}
                   fileName="Mukul_Batra_Resume.pdf"
                   iconPosition="right"
                   className="group"

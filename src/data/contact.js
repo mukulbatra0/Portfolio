@@ -62,7 +62,7 @@ export const contactInfo = {
   },
 
   resume: {
-    url: "/resume/mukul-batra-resume.pdf",
+    url: "/resume/Mukul-Batra-Resume.pdf",
     filename: "Mukul_Batra_Resume.pdf",
     lastUpdated: "November 2024",
     size: "72 KB"

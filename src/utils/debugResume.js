@@ -63,7 +63,7 @@ export const debugResumeDownload = async () => {
   console.log(`   - Is localhost: ${window.location.hostname === 'localhost'}`);
   
   console.log('\n🔧 Quick Fix Suggestions:');
-  console.log('1. Ensure the PDF file exists at /resume/mukul-batra-resume.pdf');
+  console.log('1. Ensure the PDF file exists at /resume/Mukul-Batra-Resume.pdf');
   console.log('2. Check that the PDF file is not corrupted (should start with %PDF)');
   console.log('3. Verify the file size is reasonable (> 1KB for a resume)');
   console.log('4. Test the download in different browsers');

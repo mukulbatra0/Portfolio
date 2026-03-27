@@ -24,7 +24,7 @@ To complete the SEO implementation, please add:
    - Should include portfolio branding/preview
    - Format: JPG or PNG
 
-3. **Resume** (`resume/mukul-batra-resume.pdf`)
+3. **Resume** (`resume/Mukul-Batra-Resume.pdf`)
    - Current resume in PDF format
    - Should be placed in `/resume/` directory
 

@@ -9,7 +9,7 @@ export const personalInfo = {
   summary: "Detail-oriented Computer Science student specializing in full-stack MERN development and algorithms. Proficient in the complete software development life cycle (SDLC) of web applications, from design and development to deployment and maintenance. Passionate about building scalable, user-friendly applications and solving complex problems with efficient code.",
   profileImage: "/images/profile.jpg",
   avatarImage: "/images/avatar.png",
-  resumeUrl: "/resume/mukul-batra-resume.pdf",
+  resumeUrl: "/resume/Mukul-Batra-Resume.pdf",
 
   // Social links
   social: {
