@@ -126,11 +126,7 @@ const Navbar = () => {
   return (
     <header className="navbar-container">
       <nav 
-        className={`fixed top-0 left-0 right-0 transition-all duration-300 ${
-          isScrolled 
-            ? 'bg-slate-900/95 backdrop-blur-xl border-b border-cyan-500/20 shadow-lg shadow-cyan-500/10' 
-            : 'bg-slate-900/80 backdrop-blur-md'
-        }`}
+        className="fixed top-0 left-0 right-0 z-[10000] pointer-events-none"
         style={{
           position: 'fixed',
           top: 0,
@@ -145,91 +141,114 @@ const Navbar = () => {
         role="navigation"
         aria-label="Main navigation"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
+        {/* Floating Capsule Container */}
+        <div className="flex justify-center px-4 pt-6 max-w-7xl mx-auto w-full">
+          <div className={`pointer-events-auto transition-all duration-500 w-full ${
+            isScrolled 
+              ? 'scale-95' 
+              : 'scale-100'
+          }`}>
             
-            {/* Logo */}
-            <div className="flex items-center">
+            {/* Desktop Navigation Capsule */}
+            <div className="hidden md:flex items-center justify-between gap-2 px-6 py-3 rounded-full bg-slate-900/90 backdrop-blur-xl border border-cyan-500/20 shadow-2xl shadow-cyan-500/10 w-full max-w-5xl mx-auto">
+              
+              {/* Logo Button */}
               <button
                 onClick={() => handleNavClick(SECTIONS.HERO)}
-                className="flex items-center space-x-3 group focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-slate-900 rounded-lg p-2 -m-2"
+                className="flex items-center gap-3 px-5 py-2 rounded-full hover:bg-slate-800/50 transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-cyan-400"
                 aria-label="Go to home section"
               >
-                <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-lg flex items-center justify-center text-white font-bold text-lg shadow-lg group-hover:shadow-cyan-400/50 transition-all duration-300 group-hover:scale-105">
+                <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-base shadow-lg group-hover:shadow-cyan-400/50 transition-all duration-300 group-hover:scale-110">
                   M
                 </div>
-                <div className="hidden sm:block">
-                  <div className="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors duration-300">
-                    Mukul Batra
-                  </div>
-                  <div className="text-sm text-slate-400 -mt-1">
-                    Full-Stack Developer
-                  </div>
-                </div>
+                <span className="text-base font-semibold text-white group-hover:text-cyan-400 transition-colors duration-300">
+                  Mukul Batra
+                </span>
               </button>
-            </div>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-1">
-              {navItems.map((item) => (
+              {/* Navigation Items Container */}
+              <div className="flex items-center gap-2">{navItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => handleNavClick(item.id)}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-slate-900 ${
+                  className={`relative px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 ${
                     sections?.active === item.id
-                      ? 'bg-cyan-500 text-white shadow-lg shadow-cyan-500/25'
-                      : 'text-slate-300 hover:text-white hover:bg-slate-800/50'
+                      ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg shadow-cyan-500/50 scale-105'
+                      : 'text-slate-300 hover:text-white hover:bg-slate-800/70 hover:scale-105'
                   }`}
                   aria-label={`Navigate to ${item.label} section`}
                   aria-current={sections?.active === item.id ? 'page' : undefined}
                 >
                   {item.label}
-                </button>
-              ))}
-            </div>
-
-            {/* Mobile menu button */}
-            <div className="md:hidden">
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/50 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-slate-900 transition-colors duration-200"
-                aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-                aria-expanded={isMobileMenuOpen}
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  {isMobileMenuOpen ? (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  ) : (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  {sections?.active === item.id && (
+                    <span className="absolute inset-0 rounded-full bg-cyan-400/20 animate-pulse"></span>
                   )}
-                </svg>
-              </button>
+                </button>
+              ))}</div>
             </div>
-          </div>
-        </div>
 
-        {/* Mobile Navigation Menu */}
-        <div className={`md:hidden transition-all duration-300 ease-in-out ${
-          isMobileMenuOpen 
-            ? 'max-h-screen opacity-100' 
-            : 'max-h-0 opacity-0 overflow-hidden'
-        }`}>
-          <div className="px-4 pt-2 pb-6 space-y-2 bg-slate-900/95 backdrop-blur-xl border-t border-slate-800">
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => handleNavClick(item.id)}
-                className={`block w-full text-left px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-slate-900 ${
-                  sections?.active === item.id
-                    ? 'bg-cyan-500 text-white shadow-lg shadow-cyan-500/25'
-                    : 'text-slate-300 hover:text-white hover:bg-slate-800/50'
-                }`}
-                aria-label={`Navigate to ${item.label} section`}
-                aria-current={sections?.active === item.id ? 'page' : undefined}
-              >
-                {item.label}
-              </button>
-            ))}
+            {/* Mobile Navigation Capsule */}
+            <div className="md:hidden">
+              <div className="flex items-center justify-between gap-3 px-4 py-3 rounded-full bg-slate-900/90 backdrop-blur-xl border border-cyan-500/20 shadow-2xl shadow-cyan-500/10">
+                
+                {/* Logo Button */}
+                <button
+                  onClick={() => handleNavClick(SECTIONS.HERO)}
+                  className="flex items-center gap-2 group focus:outline-none focus:ring-2 focus:ring-cyan-400 rounded-full p-1"
+                  aria-label="Go to home section"
+                >
+                  <div className="w-9 h-9 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg group-hover:shadow-cyan-400/50 transition-all duration-300">
+                    M
+                  </div>
+                  <span className="text-base font-semibold text-white group-hover:text-cyan-400 transition-colors duration-300">
+                    Mukul
+                  </span>
+                </button>
+
+                {/* Mobile Menu Button */}
+                <button
+                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                  className="p-2.5 rounded-full text-slate-300 hover:text-white hover:bg-slate-800/70 focus:outline-none focus:ring-2 focus:ring-cyan-400 transition-all duration-300"
+                  aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+                  aria-expanded={isMobileMenuOpen}
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    {isMobileMenuOpen ? (
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+                    ) : (
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 6h16M4 12h16M4 18h16" />
+                    )}
+                  </svg>
+                </button>
+              </div>
+
+              {/* Mobile Dropdown Menu */}
+              <div className={`mt-3 transition-all duration-300 ease-in-out origin-top ${
+                isMobileMenuOpen 
+                  ? 'scale-100 opacity-100' 
+                  : 'scale-95 opacity-0 pointer-events-none'
+              }`}>
+                <div className="px-3 py-3 rounded-3xl bg-slate-900/95 backdrop-blur-xl border border-cyan-500/20 shadow-2xl shadow-cyan-500/10">
+                  <div className="space-y-1">
+                    {navItems.map((item) => (
+                      <button
+                        key={item.id}
+                        onClick={() => handleNavClick(item.id)}
+                        className={`block w-full text-left px-5 py-3 rounded-full text-sm font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 ${
+                          sections?.active === item.id
+                            ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg shadow-cyan-500/50'
+                            : 'text-slate-300 hover:text-white hover:bg-slate-800/70'
+                        }`}
+                        aria-label={`Navigate to ${item.label} section`}
+                        aria-current={sections?.active === item.id ? 'page' : undefined}
+                      >
+                        {item.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </nav>
